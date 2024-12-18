@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	led := machine.D11
+	led := machine.D6
 	led.Configure(machine.PinConfig{Mode: machine.PinOutput})
 
 	for {

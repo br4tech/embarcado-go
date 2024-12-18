@@ -83,14 +83,14 @@ sudo update-alternatives --install /usr/local/bin/usbip usbip /usr/lib/linux-too
 ##### No PowerShell (admin), execute:
 
 ```bash
-usbipd bind --busid=2-2
+usbipd bind --busid=3-3
 ```
 
 ##### Conectar o dispositivo ao WSL2 (requerido a cada reconexão):
 
 No PowerShell (admin), execute:
 ```bash
-usbipd attach --wsl --busid=1-2
+usbipd attach --wsl --busid=3-3
 ```
 
 ####  Verificar a conexão no WSL2
