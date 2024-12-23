@@ -30,7 +30,18 @@ Utilize as bibliotecas do TinyGo para interagir com os periféricos do Arduino, 
 Use o comando a seguir para compilar e enviar o código para a placa Arduino:
 
 ```bash
-tinygo flash -target <placa_arduino> <arquivo.go>
+tinygo flash -target arduino -port /dev/ttyUSB0 main.go
+```
+Para ver no linux qual porta usar:
+
+```bash
+ls /dev/tty*
+```
+
+Para monitorar a porta: 
+
+```bash
+tinygo monitor -port=/dev/ttyUSB0 -baudrate=9600
 ```
 
 ## Conectando Dispositivos USB ao WSL2 para usar Golang com Arduino
