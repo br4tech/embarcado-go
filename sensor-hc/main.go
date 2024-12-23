@@ -13,9 +13,9 @@ const (
 )
 
 const (
-	ledVerde    = machine.D4
-	ledAmarelo  = machine.D5
-	ledVermelho = machine.D6
+	ledVerde    = machine.D10
+	ledAmarelo  = machine.D9
+	ledVermelho = machine.D8
 )
 
 func main() {
@@ -26,27 +26,30 @@ func main() {
 	ledAmarelo.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	ledVermelho.Configure(machine.PinConfig{Mode: machine.PinOutput})
 
+	println("Lendo dados do sensor...")
 	for {
-		distanciaMM := sensor.ReadDistance()
-		println("Distância (mm):", distanciaMM)
-		ledDistancia(distanciaMM)
+		distanciaCM := sensor.Read(29)
+		println("Valor do trigger:", triggerPin)
+		println("Valor do echo:", echoPin)
+		ledDistancia(distanciaCM)
 
 		time.Sleep(1000 * time.Millisecond) // tempo de espera aumentado
 	}
 }
 
-func ledDistancia(distanciaMM int32) { // usando uint8
+func ledDistancia(distanciaCM uint16) { // usando uint8
 	ledVerde.Low()
 	ledAmarelo.Low()
 	ledVermelho.Low()
 
-	switch {
-	case distanciaMM < 200: // 10 cm em milímetros
-		ledVermelho.High()
-	case distanciaMM <= 200: // 20 cm em milímetros
-		ledAmarelo.High()
-	case distanciaMM <= 300: // 30 cm em milímetros
-		ledVerde.High()
+	println("Distância (cm):", distanciaCM)
 
+	// Acende o LED correspondente à distância
+	if distanciaCM <= 30 && distanciaCM >= 20 {
+		ledVerde.High()
+	} else if distanciaCM <= 20 && distanciaCM >= 10 {
+		ledAmarelo.High()
+	} else if distanciaCM < 10 {
+		ledVermelho.High()
 	}
 }
