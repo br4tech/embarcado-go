@@ -4,7 +4,7 @@ import (
 	"machine"
 	"time"
 
-	"tinygo.org/x/drivers/hcsr04"
+	"github.com/br4tech/embarcado-go/sensor/hcs04"
 )
 
 const (
@@ -20,7 +20,7 @@ const (
 
 func main() {
 
-	sensor := hcsr04.New(triggerPin, echoPin)
+	sensor := hcs04.New(triggerPin, echoPin)
 
 	ledVerde.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	ledAmarelo.Configure(machine.PinConfig{Mode: machine.PinOutput})

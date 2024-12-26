@@ -1,4 +1,4 @@
-package pkg
+package hcs04
 
 import (
 	"machine"
